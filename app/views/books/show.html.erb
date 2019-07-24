@@ -1,0 +1,36 @@
+<p><%= notice %></p>
+<div class="container">
+  <div class="row">
+  	<div class="col-lg-3">
+  	  <%= render 'books/user_menu', book: @book_new, user: @user %>
+      <%# ↑部分テンプレ %>
+  	</div>
+  	<div class="col-lg-9">
+  	  <h2>Book detail</h2>
+  	  <table class="table">
+  	  	<thead>
+	  	  <tr>
+	  	    <th></th>
+	  	    <th>Title</th>
+	  	    <th>Opinion</th>
+	  	  </tr>
+	  	</thead>
+	  	<tbody>
+	  	  <tr>
+	  	  	<td><%= attachment_image_tag @book.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40' %><br>
+	  	  		<%= link_to @user.name, user_path(@user) %></td>
+	  	  	<td><%= @book.title %></td>
+	  	  	<td><%= @book.body %></td>
+	  	  <% if @book.user == current_user %>
+	  	    <td><%= link_to 'edit', edit_book_path, class: "btn btn-success" %></td>
+	  	    <td><%= link_to 'destroy', book_path, method: :delete, class: "btn btn-danger" %></td>
+	  	  <% else %>
+	  	  	<td></td>
+	  	  	<td></td>
+	  	  <% end %>
+	  	  </tr>
+	  	 </tbody>
+	  </table>
+  	</div>
+  </div>
+</div>
